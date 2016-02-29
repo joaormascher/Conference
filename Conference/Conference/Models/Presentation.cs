@@ -9,10 +9,10 @@ namespace Conference.Models
     public class Presentation
     {
         [Key]
-        public int Id { get; set; }
-        public string Title { get; set; }
-        public string Abstract { get; set; }
-        public string Presenter { get; set; }
-        public string Kind { get; set; }
+        public int Pid { get; set; } //Presentation ID
+        public string Title { get; set; } //Presentation's title
+        public string Abstract { get; set; } //Presentation's Abstract
+        public string Presenter { get; set; } //Presenter --> get from presenter's table
+        public string Kind { get; set; } //Presentation type: keynote or track
     }
 }
