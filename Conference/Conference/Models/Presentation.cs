@@ -9,7 +9,7 @@ namespace Conference.Models
     public class Presentation
     {
         [Key]
-        public int Id { get; set; }
+        public int Pid { get; set; }
         public string Title { get; set; }
         public string Abstract { get; set; }
         public string Presenter { get; set; }
