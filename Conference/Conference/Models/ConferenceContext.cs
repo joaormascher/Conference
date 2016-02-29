@@ -20,7 +20,5 @@ namespace Conference.Models
         }
 
         public System.Data.Entity.DbSet<Conference.Models.Presenter> Presenters { get; set; }
-
-        public System.Data.Entity.DbSet<Conference.Models.Presentation> Presentations { get; set; }
     }
 }
