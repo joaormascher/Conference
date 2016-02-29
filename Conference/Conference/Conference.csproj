@@ -18,7 +18,6 @@
     <RootNamespace>Conference</RootNamespace>
     <AssemblyName>Conference</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
-    
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -116,6 +115,7 @@
   <ItemGroup>
     <Compile Include="Models\Presentation.cs" />
     <Compile Include="Models\Presenter.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
