@@ -12,6 +12,6 @@ namespace Conference.Models
         public int IdSchedule { get; set; }
         public DateTime DateHour { get; set; }
         public string Host { get; set; }
-
+        public string TitlePresentation { get; set; }
     }
 }

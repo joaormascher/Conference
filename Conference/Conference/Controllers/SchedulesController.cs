@@ -15,9 +15,22 @@ namespace Conference.Controllers
         private ConferenceContext db = new ConferenceContext();
 
         // GET: Schedules
-        public ActionResult Index()
+        public ActionResult Index(string word)
         {
-            return View(db.Schedules.ToList());
+            //Schedule schedule = new Schedule();
+            //var Presen = db.Presentations.Where(p => p.Pid == schedule.Pid);
+
+            var model = from c in db.Schedules
+                        orderby c.DateHour
+                        where c.Host.Contains(word)
+                        || c.DateHour.ToString().Contains(word)
+                        || c.TitlePresentation.Contains(word)
+                        || word.Equals(null) || word.Equals("")
+                        
+                        select c;
+            
+
+            return View(model);
         }
 
         // GET: Schedules/Details/5
@@ -38,6 +51,7 @@ namespace Conference.Controllers
         // GET: Schedules/Create
         public ActionResult Create()
         {
+            ViewBag.PresenterCollection = (from c in db.Presentations select c.Title).Distinct();
             return View();
         }
 
@@ -46,7 +60,7 @@ namespace Conference.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdSchedule,DateHour,Host")] Schedule schedule)
+        public ActionResult Create([Bind(Include = "IdSchedule,DateHour,Host,TitlePresentation")] Schedule schedule)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +92,7 @@ namespace Conference.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdSchedule,DateHour,Host")] Schedule schedule)
+        public ActionResult Edit([Bind(Include = "IdSchedule,DateHour,Host,TitlePresentation")] Schedule schedule)
         {
             if (ModelState.IsValid)
             {
