@@ -15,9 +15,14 @@ namespace Conference.Controllers
         private ConferenceContext db = new ConferenceContext();
 
         // GET: Presentations
-        public ActionResult Index()
+        public ActionResult Index(string par)
         {
-            return View(db.Presentations.ToList());
+            var model = from c in db.Presentations
+                        orderby c.Pid
+                        where c.Presenter == par||par.Equals(null)||par.Equals("")                   
+                        select c;
+
+            return View(model);
         }
 
         // GET: Presentations/Details/5
@@ -46,12 +51,14 @@ namespace Conference.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        
         public ActionResult Create([Bind(Include = "Pid,Title,Abstract,Presenter,Kind")] Presentation presentation)
         {
             if (ModelState.IsValid)
             {
                 db.Presentations.Add(presentation);
                 db.SaveChanges();
+                
                 return RedirectToAction("Index");
             }
 
