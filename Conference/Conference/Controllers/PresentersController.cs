@@ -1,24 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using Conference.Models;
 
-namespace Conference.Controllers
-{
+namespace Conference.Controllers {
     public class PresentersController : Controller
     {
         private ConferenceContext db = new ConferenceContext();
 
         // GET: Presenters
-        public ActionResult Index()
+        public ActionResult Index(string find)
         {
-            return View(db.Presenters.ToList());
+            var model = from c in db.Presenters
+                        orderby c.Name
+                        where c.Name.Contains(find) || c.Title.Contains(find) || string.IsNullOrEmpty(find) //verificação da string nula ou vazia
+                        select c;
+            return View(model);
         }
+
 
         // GET: Presenters/Details/5
         public ActionResult Details(int? id)
@@ -123,5 +123,6 @@ namespace Conference.Controllers
             }
             base.Dispose(disposing);
         }
+
     }
 }

@@ -9,43 +9,50 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+<br />
+    @Html.Label("Busca :")
+    @using(Html.BeginForm()) {
+        @Html.TextBox("find");
+        <input type="submit" value="OK" />
+}
+<br />
 <table class="table">
-    <tr>
+      <tr>
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
-        <th>
+  @*      <th>
             @Html.DisplayNameFor(model => model.Email)
-        </th>
+        </th> *@
         <th>
             @Html.DisplayNameFor(model => model.Title)
         </th>
-        <th>
+  @*      <th>
             @Html.DisplayNameFor(model => model.Biography)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.UserOwner)
-        </th>
+        </th> *@
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
+      <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
-        <td>
+     @*   <td>
             @Html.DisplayFor(modelItem => item.Email)
-        </td>
+        </td>  *@
         <td>
             @Html.DisplayFor(modelItem => item.Title)
         </td>
-        <td>
+     @* <td>
             @Html.DisplayFor(modelItem => item.Biography)
-        </td>
+        </td> 
         <td>
             @Html.DisplayFor(modelItem => item.UserOwner)
-        </td>
+        </td> *@
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |
@@ -53,5 +60,17 @@
         </td>
     </tr>
 }
-
 </table>
+<script src="/Scripts/jquery-2.2.1.js"></script>
+<script>
+    $(document).ready(function () {
+        var input = document.getElementById('find');
+        $('input[type=text]').focus();
+        var val = input.value; //store the value of the element
+        input.value = ''; //clear the value of the element
+        input.value = val; //set that value back.
+      $('input').on('input', function () {
+           $('input[type=submit]').click();
+       });
+    });
+</script>
