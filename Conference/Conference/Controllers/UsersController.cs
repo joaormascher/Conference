@@ -15,9 +15,15 @@ namespace Conference.Controllers
         private ConferenceContext db = new ConferenceContext();
 
         // GET: Users
-        public ActionResult Index()
+        public ActionResult Index(int? kind)
         {
-            return View(db.Users.ToList());
+            var model = from c in db.Users
+                        orderby c.Username
+                        where c.Kind == kind
+                        || kind.Equals(null)
+                        select c;
+
+            return View(model);
         }
 
         // GET: Users/Details/5
