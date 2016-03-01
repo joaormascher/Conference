@@ -14,15 +14,24 @@ namespace Conference.Controllers
     {
         private ConferenceContext db = new ConferenceContext();
 
-        // GET: Users
-        public ActionResult Index(int? kind)
+        // GET: Users   
+        public ActionResult Index(string Username, string Email, int? kind, string atual)
         {
+            
             var model = from c in db.Users
-                        orderby c.Username
                         where c.Kind == kind
                         || kind.Equals(null)
                         select c;
 
+            if (!String.IsNullOrEmpty(Username))
+            {
+                model = model.Where(s => s.Username.Contains(Username));
+            }
+            if (!String.IsNullOrEmpty(Email))
+            {
+                model = model.Where(s => s.Email.Contains(Email));
+            }
+            
             return View(model);
         }
 
