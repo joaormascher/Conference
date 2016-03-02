@@ -4,10 +4,10 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Palestras</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Criar nova", "Create")
 </p>
 @using (Html.BeginForm())
 {
@@ -19,10 +19,12 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Title)
+            @*@Html.DisplayNameFor(model => model.Title)*@
+            @Html.DisplayName("Título")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Abstract)
+            @*@Html.DisplayNameFor(model => model.Abstract)*@
+            @Html.DisplayName("Resumo")
         </th>
         <th>
 
@@ -33,7 +35,8 @@
             @Html.DisplayName("Email")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Kind)
+            @*@Html.DisplayNameFor(model => model.Kind)*@
+            @Html.DisplayName("Tipo de Palestra")
         </th>
         <th></th>
     </tr>
@@ -63,9 +66,9 @@
             @Html.DisplayFor(modelItem => item.Kind)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Pid }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Pid }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Pid })
+            @Html.ActionLink("Editar", "Edit", new { id=item.Pid }) |
+            @Html.ActionLink("Detalhes", "Details", new { id=item.Pid }) |
+            @Html.ActionLink("Deletar", "Delete", new { id=item.Pid })
         </td>
     </tr>
 }
