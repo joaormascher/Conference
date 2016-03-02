@@ -4,10 +4,19 @@
     ViewBag.Title = "Index";
 }
 
+
 <h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
+</p>
+
+<p>
+    @using (Html.BeginForm())
+    {
+        @Html.TextBox("word")
+        <input type="submit" value="search" />
+    }
 </p>
 <table class="table">
     <tr>
@@ -16,6 +25,9 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Host)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TitlePresentation)
         </th>
         <th></th>
     </tr>
@@ -29,6 +41,9 @@
             @Html.DisplayFor(modelItem => item.Host)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.TitlePresentation)
+        </td>
+        <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.IdSchedule }) |
             @Html.ActionLink("Details", "Details", new { id=item.IdSchedule }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.IdSchedule })
@@ -37,3 +52,17 @@
 }
 
 </table>
+
+<script src="/Scripts/jquery-2.2.1.js"></script>
+<script>
+               $(document).ready(function () {
+                   $('input[type=text]').on('input', function (e) {
+                       $("input[type=submit]").click();
+
+                   });
+                       $('#word').focus();
+                       var str = $('#word').val();
+                       $('#word').val('');
+                       $('#word').val(str);
+               });
+</script>
