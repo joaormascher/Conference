@@ -12,6 +12,7 @@ namespace Conference.Controllers
 {
     public class PresentationsController : Controller
     {
+
         private ConferenceContext db = new ConferenceContext();
 
         // GET: Presentations
@@ -19,9 +20,8 @@ namespace Conference.Controllers
         {
             var model = from c in db.Presentations
                         orderby c.Pid
-                        where c.Presenter == par||par.Equals(null)||par.Equals("")                   
+                        where c.Presenter.Contains(par)||c.Title.Contains(par)||c.Kind.Contains(par)||par.Equals(null)||par.Equals("")                
                         select c;
-
             return View(model);
         }
 
@@ -43,6 +43,13 @@ namespace Conference.Controllers
         // GET: Presentations/Create
         public ActionResult Create()
         {
+            ViewBag.PresenterCollection = db.Presenters.Select(p=> new SelectListItem()
+                                                                       { Text=p.Name,
+                                                                         Value =p.Id.ToString()
+                                                                       }).ToList();
+
+            //   string teste = Convert.ToString(ViewBag.PresenterCollection;
+            //  ViewBag.EmailCollection = (from d in db.Presenters where d.Name == teste select d.Email);
             return View();
         }
 
@@ -77,6 +84,7 @@ namespace Conference.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.PresenterCollection = (from c in db.Presenters select c.Name).Distinct();
             return View(presentation);
         }
 
@@ -130,5 +138,6 @@ namespace Conference.Controllers
             }
             base.Dispose(disposing);
         }
+
     }
 }

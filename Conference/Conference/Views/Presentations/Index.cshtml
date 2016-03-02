@@ -9,6 +9,13 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+@using (Html.BeginForm())
+{
+     @Html.TextBox("par")
+     <input type="submit" style="display:none" />
+}
+
+
 <table class="table">
     <tr>
         <th>
@@ -49,3 +56,22 @@
 }
 
 </table>
+
+<script src="/Scripts/jquery-2.2.1.js"></script>
+<script>
+
+               $(document).ready(function () {
+                   $('input[type=text]').on('input', function (e) {
+                       $("input[type=submit]").click();
+
+                   });
+
+
+                   $('#par').focus();
+                   var str = $('#par').val();
+                   $('#par').val('');
+                   $('#par').val(str);
+
+               });
+
+</script>
