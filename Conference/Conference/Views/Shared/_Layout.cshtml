@@ -40,5 +40,25 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script>
+            $('#Presenter').change(function(){
+           var pId = $(this).val();
+           $.ajax({
+                            
+               url: '../Presenters/LoadPresenters',
+                    type:'POST',
+                    data: JSON.stringify({id: pId}),
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    success:function(data){
+                        $("#lPresenter").html(data[0].Email);
+                    }
+               });
+
+            });
+
+
+
+    </script>
 </body>
 </html>

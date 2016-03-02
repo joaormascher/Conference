@@ -123,5 +123,12 @@ namespace Conference.Controllers {
             }
             base.Dispose(disposing);
         }
+
+        // [HttpPost]
+        public ActionResult LoadPresenters(int id)
+        {
+            var presenter = db.Presenters.Where(p => p.Id == id).ToList();
+            return Json(presenter, JsonRequestBehavior.AllowGet);
+        }
     }
 }

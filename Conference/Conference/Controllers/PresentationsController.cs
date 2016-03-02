@@ -12,12 +12,17 @@ namespace Conference.Controllers
 {
     public class PresentationsController : Controller
     {
+
         private ConferenceContext db = new ConferenceContext();
 
         // GET: Presentations
-        public ActionResult Index()
+        public ActionResult Index(string par)
         {
-            return View(db.Presentations.ToList());
+            var model = from c in db.Presentations
+                        orderby c.Pid
+                        where c.Presenter.Contains(par)||c.Title.Contains(par)||c.Kind.Contains(par)||par.Equals(null)||par.Equals("")                
+                        select c;
+            return View(model);
         }
 
         // GET: Presentations/Details/5
@@ -38,6 +43,13 @@ namespace Conference.Controllers
         // GET: Presentations/Create
         public ActionResult Create()
         {
+            ViewBag.PresenterCollection = db.Presenters.Select(p=> new SelectListItem()
+                                                                       { Text=p.Name,
+                                                                         Value =p.Id.ToString()
+                                                                       }).ToList();
+
+            //   string teste = Convert.ToString(ViewBag.PresenterCollection;
+            //  ViewBag.EmailCollection = (from d in db.Presenters where d.Name == teste select d.Email);
             return View();
         }
 
@@ -46,12 +58,14 @@ namespace Conference.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        
         public ActionResult Create([Bind(Include = "Pid,Title,Abstract,Presenter,Kind")] Presentation presentation)
         {
             if (ModelState.IsValid)
             {
                 db.Presentations.Add(presentation);
                 db.SaveChanges();
+                
                 return RedirectToAction("Index");
             }
 
@@ -70,6 +84,7 @@ namespace Conference.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.PresenterCollection = (from c in db.Presenters select c.Name).Distinct();
             return View(presentation);
         }
 
@@ -123,5 +138,6 @@ namespace Conference.Controllers
             }
             base.Dispose(disposing);
         }
+
     }
 }

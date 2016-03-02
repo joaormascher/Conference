@@ -7,10 +7,11 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
+
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Presentation</h4>
         <hr />
@@ -31,12 +32,43 @@
             </div>
         </div>
 
+        
         <div class="form-group">
             @Html.LabelFor(model => model.Presenter, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Presenter, new { htmlAttributes = new { @class = "form-control" } })
+               @* @Html.EditorFor(model => model.Presenter, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(model => model.Presenter, "", new { @class = "text-danger" })*@
+               @* @Html.DropDownListFor(model => model.Presenter, new SelectList(ViewBag.PresenterCollection))
+    @Html. (ViewBag.EmailColletction);*@ 
+                @* ^linhas usadas para entrada em caixa de texto *@
+
+
+                @Html.DropDownList("Presenter", (ViewBag.PresenterCollection as List<SelectListItem>
+               ).Select(item => new SelectListItem
+                           {
+                               Value = item.Value,
+                               Text = item.Text,
+                               Selected = "select" == item.Value ? true : false
+                           })
+
+
+               )
+
+
+                <span id="lPresenter"></span>
                 @Html.ValidationMessageFor(model => model.Presenter, "", new { @class = "text-danger" })
-            </div>
+
+
+                    @*@Html.DropDownListFor(model => model.Presenter, (ViewBag.PresenterCollection as List<SelectListItem>
+                        )
+                        .Select(option => new SelectListItem
+                        {
+                        Text = option.Text,
+                        Value = option.Value,
+                        Selected = "select" == option.Value ? true : false
+                        })*@
+
+</div>
         </div>
 
         <div class="form-group">
