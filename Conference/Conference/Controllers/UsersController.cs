@@ -14,10 +14,25 @@ namespace Conference.Controllers
     {
         private ConferenceContext db = new ConferenceContext();
 
-        // GET: Users
-        public ActionResult Index()
+        // GET: Users   
+        public ActionResult Index(string Username, string Email, int? kind, string atual)
         {
-            return View(db.Users.ToList());
+            
+            var model = from c in db.Users
+                        where c.Kind == kind
+                        || kind.Equals(null)
+                        select c;
+
+            if (!String.IsNullOrEmpty(Username))
+            {
+                model = model.Where(s => s.Username.Contains(Username));
+            }
+            if (!String.IsNullOrEmpty(Email))
+            {
+                model = model.Where(s => s.Email.Contains(Email));
+            }
+            
+            return View(model);
         }
 
         // GET: Users/Details/5
