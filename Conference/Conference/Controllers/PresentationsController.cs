@@ -45,7 +45,7 @@ namespace Conference.Controllers
         {
             ViewBag.PresenterCollection = db.Presenters.Select(p=> new SelectListItem()
                                                                        { Text=p.Name,
-                                                                         Value =p.Id.ToString()
+                                                                         Value =p.Id.ToString()                                                                        
                                                                        }).ToList();
 
             //   string teste = Convert.ToString(ViewBag.PresenterCollection;

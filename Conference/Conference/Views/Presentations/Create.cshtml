@@ -36,38 +36,20 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Presenter, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-               @* @Html.EditorFor(model => model.Presenter, new { htmlAttributes = new { @class = "form-control" } })
-    @Html.ValidationMessageFor(model => model.Presenter, "", new { @class = "text-danger" })*@
-               @* @Html.DropDownListFor(model => model.Presenter, new SelectList(ViewBag.PresenterCollection))
-    @Html. (ViewBag.EmailColletction);*@ 
-                @* ^linhas usadas para entrada em caixa de texto *@
-
-
-                @Html.DropDownList("Presenter", (ViewBag.PresenterCollection as List<SelectListItem>
+            @Html.DropDownListFor(model => model.Presenter, (ViewBag.PresenterCollection as List<SelectListItem>
                ).Select(item => new SelectListItem
                            {
-                               Value = item.Value,
-                               Text = item.Text,
-                               Selected = "select" == item.Value ? true : false
-                           })
-
+                   Value = item.Value,
+                   Text = item.Text,
+                   Selected = "select" == item.Value ? true : false
+               }), htmlAttributes: new { @class = "btn form-control dropdown-toggle", @style = "border-color:#C0C0C0" }
 
                )
 
 
                 <span id="lPresenter"></span>
                 @Html.ValidationMessageFor(model => model.Presenter, "", new { @class = "text-danger" })
-
-
-                    @*@Html.DropDownListFor(model => model.Presenter, (ViewBag.PresenterCollection as List<SelectListItem>
-                        )
-                        .Select(option => new SelectListItem
-                        {
-                        Text = option.Text,
-                        Value = option.Value,
-                        Selected = "select" == option.Value ? true : false
-                        })*@
-
+                
 </div>
         </div>
 
