@@ -34,7 +34,7 @@
 
         
         <div class="form-group">
-            @Html.LabelFor(model => model.Presenter, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.PresenterId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                @* @Html.EditorFor(model => model.Presenter, new { htmlAttributes = new { @class = "form-control" } })
     @Html.ValidationMessageFor(model => model.Presenter, "", new { @class = "text-danger" })*@
@@ -43,20 +43,18 @@
                 @* ^linhas usadas para entrada em caixa de texto *@
 
 
-                @Html.DropDownList("Presenter", (ViewBag.PresenterCollection as List<SelectListItem>
+                @Html.DropDownListFor(model => model.PresenterId, (ViewBag.PresenterCollection as List<Conference.Models.Presenter>
                ).Select(item => new SelectListItem
                            {
-                               Value = item.Value,
-                               Text = item.Text,
-                               Selected = "select" == item.Value ? true : false
+                               Value = item.Id.ToString(),
+                               Text = item.Name
                            })
 
 
                )
 
-
                 <span id="lPresenter"></span>
-                @Html.ValidationMessageFor(model => model.Presenter, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.PresenterId, "", new { @class = "text-danger" })
 
 
                     @*@Html.DropDownListFor(model => model.Presenter, (ViewBag.PresenterCollection as List<SelectListItem>

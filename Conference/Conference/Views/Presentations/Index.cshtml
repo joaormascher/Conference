@@ -25,7 +25,12 @@
             @Html.DisplayNameFor(model => model.Abstract)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Presenter)
+
+            @Html.DisplayName("Apresentador")
+        </th>
+        <th>
+
+            @Html.DisplayName("Email")
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Kind)
@@ -42,7 +47,17 @@
             @Html.DisplayFor(modelItem => item.Abstract)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Presenter)
+           @Html.TextBoxFor(modelItem => item.PresenterId,
+              (ViewBag.PresenterCollection as List<Conference.Models.Presenter>).Where(p => p.Id == item.PresenterId).FirstOrDefault().Name,
+               htmlAttributes: new { @readonly = true, @style = "border:none;out-line:none;" }
+           )
+
+         </td>
+        <td>
+            @Html.TextBoxFor(modelItem => item.PresenterId,
+              (ViewBag.PresenterCollection as List<Conference.Models.Presenter>).Where(p => p.Id == item.PresenterId).FirstOrDefault().Email,
+               htmlAttributes: new { @readonly = true, @style = "border:none;out-line:none;" }
+           )
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Kind)
@@ -57,16 +72,14 @@
 
 </table>
 
+
 <script src="/Scripts/jquery-2.2.1.js"></script>
 <script>
 
                $(document).ready(function () {
                    $('input[type=text]').on('input', function (e) {
                        $("input[type=submit]").click();
-
                    });
-
-
                    $('#par').focus();
                    var str = $('#par').val();
                    $('#par').val('');

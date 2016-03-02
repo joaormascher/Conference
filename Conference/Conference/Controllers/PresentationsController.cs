@@ -17,13 +17,23 @@ namespace Conference.Controllers
 
         // GET: Presentations
         public ActionResult Index(string par)
-        {
+        { ViewBag.PresenterCollection = (from p in db.Presenters
+                                           select p).ToList();
+            var ids = (from p in db.Presenters
+                       where p.Name.Contains(par)
+                       select p.Id).ToList();
+
             var model = from c in db.Presentations
                         orderby c.Pid
-                        where c.Presenter.Contains(par)||c.Title.Contains(par)||c.Kind.Contains(par)||par.Equals(null)||par.Equals("")                
+                        where ids.Contains(c.PresenterId)|| c.Title.Contains(par) || c.Kind.Contains(par) || par.Equals(null) || par.Equals("")
                         select c;
+
+//c.PresenterId in ids ||
+
+           
             return View(model);
         }
+        
 
         // GET: Presentations/Details/5
         public ActionResult Details(int? id)
@@ -43,13 +53,9 @@ namespace Conference.Controllers
         // GET: Presentations/Create
         public ActionResult Create()
         {
-            ViewBag.PresenterCollection = db.Presenters.Select(p=> new SelectListItem()
-                                                                       { Text=p.Name,
-                                                                         Value =p.Id.ToString()
-                                                                       }).ToList();
+            ViewBag.PresenterCollection = (from p in db.Presenters
+                                           select p).ToList();
 
-            //   string teste = Convert.ToString(ViewBag.PresenterCollection;
-            //  ViewBag.EmailCollection = (from d in db.Presenters where d.Name == teste select d.Email);
             return View();
         }
 
@@ -59,7 +65,7 @@ namespace Conference.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         
-        public ActionResult Create([Bind(Include = "Pid,Title,Abstract,Presenter,Kind")] Presentation presentation)
+        public ActionResult Create([Bind(Include = "Pid,Title,Abstract,PresenterId,Kind")] Presentation presentation)
         {
             if (ModelState.IsValid)
             {
@@ -75,6 +81,8 @@ namespace Conference.Controllers
         // GET: Presentations/Edit/5
         public ActionResult Edit(int? id)
         {
+            ViewBag.PresenterCollection = (from p in db.Presenters
+                                           select p).ToList();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -84,7 +92,7 @@ namespace Conference.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.PresenterCollection = (from c in db.Presenters select c.Name).Distinct();
+            //ViewBag.PresenterCollection = (from c in db.Presenters select c.Name).Distinct();
             return View(presentation);
         }
 
@@ -93,7 +101,7 @@ namespace Conference.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Pid,Title,Abstract,Presenter,Kind")] Presentation presentation)
+        public ActionResult Edit([Bind(Include = "Pid,Title,Abstract,PresenterId,Kind")] Presentation presentation)
         {
             if (ModelState.IsValid)
             {

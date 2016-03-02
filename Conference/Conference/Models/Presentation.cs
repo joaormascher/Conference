@@ -13,7 +13,7 @@ namespace Conference.Models
         public string Title { get; set; } //Presentation's title
         public string Abstract { get; set; } //Presentation's Abstract
         public string Kind { get; set; } //Presentation type: keynote or track
-        public string Presenter { get; set; } //Presenter --> get from presenter's table
+        public int PresenterId { get; set; }
         //public string testeEmail { get; set; }
         //public int Presenter { get; set; }
     }
