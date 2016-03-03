@@ -138,5 +138,10 @@ namespace Conference.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult LoadUsers(string id) {
+            var users = db.Users.Where(p => p.Username == id).ToList();
+            return Json(users, JsonRequestBehavior.AllowGet);
+        }
     }
 }

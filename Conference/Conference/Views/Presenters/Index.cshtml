@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Palestrantes</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -13,8 +13,8 @@
     @Html.Label("Busca :")
     @using(Html.BeginForm()) {
         @Html.TextBox("find");
-        <input type="submit" value="OK" />
-}
+        <input type="submit" style="display:none" />
+    }
 <br />
 <table class="table">
       <tr>

@@ -34,7 +34,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.TitlePresentation, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("TitlePresentation", new SelectList(ViewBag.PresentationCollection))
+                @Html.DropDownList("TitlePresentation", new SelectList(ViewBag.PresenterCollection), htmlAttributes: new { @class = "btn form-control dropdown-toggle", @style = "border-color:#C0C0C0" })
             </div>
         </div>
 
