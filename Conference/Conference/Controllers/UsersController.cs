@@ -10,7 +10,7 @@ using Conference.Models;
 
 namespace Conference.Controllers
 {
-       
+    [Authorize]
     public class UsersController : Controller
     {
         private ConferenceContext db = new ConferenceContext();

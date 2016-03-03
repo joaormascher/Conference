@@ -10,6 +10,7 @@ using Conference.Models;
 
 namespace Conference.Controllers
 {
+    [Authorize]
     public class PresentationsController : Controller
     {
 
