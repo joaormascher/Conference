@@ -10,10 +10,11 @@ using Conference.Models;
 
 namespace Conference.Controllers
 {
+	[Authorize]
     public class SchedulesController : Controller
     {
         private ConferenceContext db = new ConferenceContext();
-
+        
         // GET: Schedules
         public ActionResult Index(string word)
         {

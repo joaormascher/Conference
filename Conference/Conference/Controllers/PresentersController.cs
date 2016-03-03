@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using Conference.Models;
 
 namespace Conference.Controllers {
+    [Authorize]
     public class PresentersController : Controller
     {
         private ConferenceContext db = new ConferenceContext();

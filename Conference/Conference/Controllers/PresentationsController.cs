@@ -10,11 +10,12 @@ using Conference.Models;
 
 namespace Conference.Controllers
 {
+   [Authorize]
     public class PresentationsController : Controller
     {
 
         private ConferenceContext db = new ConferenceContext();
-
+       
         // GET: Presentations
         public ActionResult Index(string par)
         { ViewBag.PresenterCollection = (from p in db.Presenters

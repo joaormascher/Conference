@@ -7,14 +7,15 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Conference.Models;
+using System.Web.Security;
 
 namespace Conference.Controllers
 {
-       
+   [Authorize]  
     public class UsersController : Controller
     {
         private ConferenceContext db = new ConferenceContext();
-
+       
         // GET: Users   
         public ActionResult Index(string Username, string Email, int? kind, string atual)
         {
@@ -148,5 +149,9 @@ namespace Conference.Controllers
             var users = db.Users.Where(p => p.Username == id).ToList();
             return Json(users, JsonRequestBehavior.AllowGet);
         }
+
+
+
+
     }
 }
