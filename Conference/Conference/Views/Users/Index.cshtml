@@ -7,17 +7,17 @@
     .label{
         padding: 10px 15px 0 0;
         color:black;
-        font-size:18px;
+        font-size:13px;
     }
     #atual,#submit{
         display:none;
     }
 
 </style>
-<h2>Index</h2>
+<h2>Usuários</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Cadastrar novo usuário", "Create")
 </p>
 <br />
 @Html.Label("Busca :")
@@ -26,7 +26,10 @@
         @Html.TextBox("atual");
 
         @Html.TextBox("Username");
-        @Html.Label("E-mail :");    @Html.TextBox("Email");
+        <br />
+        @Html.Label("Busca por e-mail :");  
+        <br />
+        @Html.TextBox("Email");
         <br />
         @Html.Label("Tipo :");
           
@@ -36,7 +39,7 @@
                 <td>
                     @Html.RadioButton("kind", "")
                 </td>
-                <td class="label">
+                <td class="label" >
                     Nenhum
                 </td>
                 
@@ -97,9 +100,9 @@
                        
         </td>
         <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.Username }) |
-                            @Html.ActionLink("Details", "Details", new { id = item.Username }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.Username })
+                            @Html.ActionLink("Editar", "Edit", new { id = item.Username }) |
+                            @Html.ActionLink("Detalhes", "Details", new { id = item.Username }) |
+                            @Html.ActionLink("Deletar", "Delete", new { id = item.Username })
         </td>
     </tr>
 }
