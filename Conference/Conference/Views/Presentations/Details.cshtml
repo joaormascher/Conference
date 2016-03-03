@@ -4,14 +4,15 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Detalhes</h2>
 
 <div>
-    <h4>Presentation</h4>
+    <h4>Palestra</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Title)
+            @*@Html.DisplayNameFor(model => model.Title)*@
+            @Html.DisplayName("Título")
         </dt>
 
         <dd>
@@ -19,7 +20,8 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Abstract)
+            @*@Html.DisplayNameFor(model => model.Abstract)*@
+            @Html.DisplayName("Resumo")
         </dt>
 
         <dd>
@@ -27,15 +29,17 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Presenter)
+            @*@Html.DisplayNameFor(model => model.Presenter)*@
+            @Html.DisplayName("Palestrante")
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Presenter)
+            @Html.DisplayFor(model => model.PresenterId)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Kind)
+            @*@Html.DisplayNameFor(model => model.Kind)*@
+            @Html.DisplayName("Tipo de Palestra")
         </dt>
 
         <dd>
