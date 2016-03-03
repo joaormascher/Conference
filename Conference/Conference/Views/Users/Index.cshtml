@@ -3,19 +3,81 @@
 @{
     ViewBag.Title = "Index";
 }
+<style>
+    .label{
+        padding: 10px 15px 0 0;
+        color:black;
+        font-size:18px;
+    }
+    #atual,#submit{
+        display:none;
+    }
 
 <h2>Usuários</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+    @using (Html.BeginForm())
+    {
+      
+        @Html.TextBox("atual");
+        @Html.Label("Username :");
+        <br />
+        @Html.TextBox("Username");
+        <br /><br />
+        @Html.Label("E-mail :");
+        <br />
+        @Html.TextBox("Email");
+        <br /><br />
+        @Html.Label("Tipo :");
+          
+        <table id="radio" style="border:none">
+            <tr>
+               
+                <td>
+                    @Html.RadioButton("kind", "")
+                </td>
+                <td class="label">
+                    Nenhum
+                </td>
+                
+                <td>
+                    @Html.RadioButton("kind", 0)
+                </td>
+                <td class="label">
+                    Admin
+                </td>
+               
+                <td>
+                    @Html.RadioButton("kind", 1)
+                </td>
+                <td class="label">
+                    Palestrante
+                </td>
+                
+                <td>
+                    @Html.RadioButton("kind", 2)
+                </td>
+                <td class="label">
+                    Usuário
+                </td>
+            </tr>
+           
+               
+                
+         
+        </table>
+            
+            <input type="Submit" id="submit" value="Pesquisar" />
+            }
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Email)
+                        @Html.DisplayNameFor(model => model.Username)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Password)
+                        @Html.DisplayNameFor(model => model.Email)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Kind)
@@ -23,23 +85,59 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+                @foreach (var item in Model)
+                {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Email)
+                            @Html.DisplayFor(modelItem => item.Username)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Password)
+                            @Html.DisplayFor(modelItem => item.Email)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Kind)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Username }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Username }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Username })
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Username }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.Username }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Username })
         </td>
     </tr>
 }
 
 </table>
+            <script src="/Scripts/jquery-2.2.1.js"></script>
+            <script>
+
+                $(document).ready(function () {
+                    $('input[type=text]').on('input', function (e) {
+                        $("input[type=submit]").click();
+
+                    });
+                    $("#Username").click(function () {
+                        $("#atual").val("user");
+                    });
+                    $("#Email").click(function () {
+                        $("#atual").val("email");
+                    });
+                    $('input[type=radio]').click(function () {
+                        $("input[type=submit]").click();
+
+                    });
+                        $('#Username').focus();
+                        var str = $('#Username').val();
+                        $('#Username').val('');
+                        $('#Username').val(str);
+
+                        var str = $('#atual').val();
+                    if (str == "email") { 
+                        $('#Email').focus();
+                        var str = $('#Email').val();
+                        $('#Email').val('');
+                        $('#Email').val(str);
+                    }
+                   
+
+                });
+               
+            </script>
