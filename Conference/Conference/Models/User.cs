@@ -11,12 +11,15 @@ namespace Conference.Models
     {
         [Key]
         [Display(Name ="Login")]
-        [Required(ErrorMessage ="Informe o nome do usuário",AllowEmptyStrings = false)]
+        [Required(ErrorMessage =" Informe o nome de usuário", AllowEmptyStrings = false)]
         public string Username { get; set; }
+        [Display(Name = "E-mail")]
         public string Email { get; set; }
-        [Required(ErrorMessage ="Informe a senha do usuário",AllowEmptyStrings =false)]
+        [Required(ErrorMessage =" Informe a senha de usuário", AllowEmptyStrings = false)]
         [DataType(System.ComponentModel.DataAnnotations.DataType.Password)]
+        [Display(Name = "Senha")]
         public string Password { get; set; }
+        [Display(Name = "Tipo de Usuário")]
         public int Kind { get; set; }
     }
 }
