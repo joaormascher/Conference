@@ -31,8 +31,9 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Kind)
-        </dd>
+            <span id="Kind"> @Html.DisplayFor(model => model.Kind)</span>
+             <span id="tipo">Admin</span>
+</dd>
 
     </dl>
 </div>
@@ -40,3 +41,19 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.Username }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+<script src="/Scripts/jquery-2.2.1.js"></script>
+<script>
+
+    $(document).ready(function () {
+        $("#Kind").hide();
+        var str;
+        if ($("#Kind").html() == "0")
+            str = "Admin";
+        if ($("#Kind").html() == "1")
+            str = "Palestrante";
+        if ($("#Kind").html() == "2")
+            str = "Usuário";
+        $("#tipo").html(str);
+       });
+
+</script>
