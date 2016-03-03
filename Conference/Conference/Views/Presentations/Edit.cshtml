@@ -4,7 +4,7 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<h2>Editar</h2>
 
 
 @using (Html.BeginForm())
@@ -44,7 +44,7 @@
                {
                    Value = item.Id.ToString(),
                    Text = item.Name
-               })
+               }), htmlAttributes: new { @class = "btn form-control dropdown-toggle", @style = "border-color:#C0C0C0" }
 
 
                )
