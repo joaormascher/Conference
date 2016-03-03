@@ -25,6 +25,7 @@ namespace Conference.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AllowAnonymous]
         public ActionResult Login(User u)
         {
             if (ModelState.IsValid)
