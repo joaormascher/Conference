@@ -36,7 +36,10 @@
         <div class="form-group">
             @Html.LabelFor(model => model.TitlePresentation, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Title", new SelectList(ViewBag.PresenterCollection))
+                @*@Html.EditorFor(model => model.TitlePresentation, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TitlePresentation, "", new { @class = "text-danger" })*@
+
+                @Html.DropDownList("TitlePresentation", new SelectList(ViewBag.PresentationCollection))
             </div>
         </div>
 

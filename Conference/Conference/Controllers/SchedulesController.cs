@@ -18,7 +18,7 @@ namespace Conference.Controllers
         public ActionResult Index(string word)
         {
             //Schedule schedule = new Schedule();
-            //var Presen = db.Presentations.Where(p => p.Pid == schedule.Pid);
+            //var Presen = db.Presentations.Where(p => p.Pid == schedule.);
 
             var model = from c in db.Schedules
                         orderby c.DateHour
@@ -84,6 +84,7 @@ namespace Conference.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.PresentationCollection = (from c in db.Presentations select c.Title).Distinct();
             return View(schedule);
         }
 

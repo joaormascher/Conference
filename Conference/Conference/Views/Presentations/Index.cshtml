@@ -4,10 +4,10 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Palestras</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Criar nova", "Create")
 </p>
 <br />
 @Html.Label("Busca :")
@@ -21,16 +21,24 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Title)
+            @*@Html.DisplayNameFor(model => model.Title)*@
+            @Html.DisplayName("Título")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Abstract)
+            @*@Html.DisplayNameFor(model => model.Abstract)*@
+            @Html.DisplayName("Resumo")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Presenter)
+
+            @Html.DisplayName("Apresentador")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Kind)
+
+            @Html.DisplayName("Email")
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.Kind)*@
+            @Html.DisplayName("Tipo de Palestra")
         </th>
         <th></th>
     </tr>
@@ -44,20 +52,31 @@
             @Html.DisplayFor(modelItem => item.Abstract)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Presenter)
+           @Html.TextBoxFor(modelItem => item.PresenterId,
+              (ViewBag.PresenterCollection as List<Conference.Models.Presenter>).Where(p => p.Id == item.PresenterId).FirstOrDefault().Name,
+               htmlAttributes: new { @readonly = true, @style = "border:none;out-line:none;" }
+           )
+
+         </td>
+        <td>
+            @Html.TextBoxFor(modelItem => item.PresenterId,
+              (ViewBag.PresenterCollection as List<Conference.Models.Presenter>).Where(p => p.Id == item.PresenterId).FirstOrDefault().Email,
+               htmlAttributes: new { @readonly = true, @style = "border:none;out-line:none;" }
+           )
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Kind)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Pid }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Pid }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Pid })
+            @Html.ActionLink("Editar", "Edit", new { id=item.Pid }) |
+            @Html.ActionLink("Detalhes", "Details", new { id=item.Pid }) |
+            @Html.ActionLink("Deletar", "Delete", new { id=item.Pid })
         </td>
     </tr>
 }
 
 </table>
+
 
 <script src="/Scripts/jquery-2.2.1.js"></script>
 <script>
@@ -65,10 +84,7 @@
                $(document).ready(function () {
                    $('input[type=text]').on('input', function (e) {
                        $("input[type=submit]").click();
-
                    });
-
-
                    $('#par').focus();
                    var str = $('#par').val();
                    $('#par').val('');
