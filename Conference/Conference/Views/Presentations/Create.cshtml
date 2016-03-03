@@ -57,15 +57,6 @@
                 @Html.ValidationMessageFor(model => model.PresenterId, "", new { @class = "text-danger" })
 
 
-                    @*@Html.DropDownListFor(model => model.Presenter, (ViewBag.PresenterCollection as List<SelectListItem>
-                        )
-                        .Select(option => new SelectListItem
-                        {
-                        Text = option.Text,
-                        Value = option.Value,
-                        Selected = "select" == option.Value ? true : false
-                        })*@
-
 </div>
         </div>
 
