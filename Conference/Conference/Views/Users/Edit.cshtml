@@ -36,6 +36,13 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Kind, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
+                <select id="select" style="border-color:#C0C0C0" class="btn form-control dropdown-toggle">
+                    <option value="0">Admin</option>
+                    <option value="1">Palestrante</option>
+                    <option value="2">Usuário</option>
+                </select>
+
+
                 @Html.EditorFor(model => model.Kind, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Kind, "", new { @class = "text-danger" })
             </div>
@@ -56,3 +63,17 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+<script src="/Scripts/jquery-2.2.1.js"></script>
+<script>
+
+    $(document).ready(function () {
+        $("#Kind").hide();
+        $("#select").val($("#Kind").val());
+                    $('#select').change(function () {
+                        $("#Kind").val($("#select").val());
+                    });
+                     
+
+                });
+
+</script>

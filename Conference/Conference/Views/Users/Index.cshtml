@@ -23,8 +23,7 @@
     {
       
         @Html.TextBox("atual");
-        @Html.Label("Username :");
-        <br />
+
         @Html.TextBox("Username");
         <br /><br />
         @Html.Label("E-mail :");
@@ -96,7 +95,8 @@
                             @Html.DisplayFor(modelItem => item.Email)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Kind)
+                            @Html.TextBoxFor(modelItem => item.Kind, item.Kind == 0?"Admin": item.Kind == 1? "Palestrante" : "Usuário", htmlAttributes: new { @readonly=true,@style = "border:none;out-line:none;" })
+                       
                         </td>
                         <td>
                             @Html.ActionLink("Edit", "Edit", new { id = item.Username }) |
