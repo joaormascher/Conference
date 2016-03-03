@@ -9,7 +9,7 @@ namespace Conference.Controllers {
     public class PresentersController : Controller
     {
         private ConferenceContext db = new ConferenceContext();
-
+      
         // GET: Presenters
         public ActionResult Index(string find)
         {
