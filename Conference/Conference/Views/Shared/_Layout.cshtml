@@ -42,11 +42,12 @@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
     <script>
-            $('#Presenter').change(function(){
+        
+            $('#PresenterId').change(function(){
            var pId = $(this).val();
            $.ajax({
                             
-               url: '../Presenters/LoadPresenters',
+               url: '../../Presenters/LoadPresenters',
                     type:'POST',
                     data: JSON.stringify({id: pId}),
                     dataType: 'json',
@@ -57,7 +58,9 @@
                });
 
             });
-
+            $(document).ready(function () {
+                $('#PresenterId').change();
+            });
 
 
     </script>

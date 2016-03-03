@@ -13,7 +13,6 @@
         display:none;
     }
 
-</style>
 <h2>Index</h2>
 
 <p>
@@ -68,41 +67,41 @@
             
             <input type="Submit" id="submit" value="Pesquisar" />
             }
-            <table class="table">
-                <tr>
-                    <th>
+<table class="table">
+    <tr>
+        <th>
                         @Html.DisplayNameFor(model => model.Username)
-                    </th>
-                    <th>
+        </th>
+        <th>
                         @Html.DisplayNameFor(model => model.Email)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Kind)
-                    </th>
-                    <th></th>
-                </tr>
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Kind)
+        </th>
+        <th></th>
+    </tr>
 
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td>
+    <tr>
+        <td>
                             @Html.DisplayFor(modelItem => item.Username)
-                        </td>
-                        <td>
+        </td>
+        <td>
                             @Html.DisplayFor(modelItem => item.Email)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Kind)
-                        </td>
-                        <td>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Kind)
+        </td>
+        <td>
                             @Html.ActionLink("Edit", "Edit", new { id = item.Username }) |
                             @Html.ActionLink("Details", "Details", new { id = item.Username }) |
                             @Html.ActionLink("Delete", "Delete", new { id = item.Username })
-                        </td>
-                    </tr>
-                }
+        </td>
+    </tr>
+}
 
-            </table>
+</table>
             <script src="/Scripts/jquery-2.2.1.js"></script>
             <script>
 
