@@ -10,11 +10,11 @@ using Conference.Models;
 
 namespace Conference.Controllers
 {
-	[Authorize]
+    [Authorize]
     public class SchedulesController : Controller
     {
         private ConferenceContext db = new ConferenceContext();
-        
+
         // GET: Schedules
         public ActionResult Index(string word)
         {
@@ -61,6 +61,7 @@ namespace Conference.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AllowAnonymous]
         public ActionResult Create([Bind(Include = "IdSchedule,DateHour,Host,TitlePresentation")] Schedule schedule)
         {
             if (ModelState.IsValid)

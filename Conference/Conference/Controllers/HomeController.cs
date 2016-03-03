@@ -14,14 +14,16 @@ namespace Conference.Controllers
         // GET: Home
         public ActionResult Index()
         {
+
             return View();
         }
-
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+
             return View();
         }
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AllowAnonymous]
@@ -32,22 +34,18 @@ namespace Conference.Controllers
                 using (ConferenceContext dc = new ConferenceContext())
                 {
                     var v = dc.Users.Where(a => a.Username.Equals(u.Username) && a.Password.Equals(u.Password)).FirstOrDefault();
-                    if(v!=null)
+
+                    if(v != null)
                     {
-                        Session["User"] = v;
-
-                        CreateAuthorizeTicket(u.Username, "admin");
-
+                        Session["user"] = v;
+                        CreateAuthorizeTicket(v.Username, "Admin");
                         return RedirectToAction("Index");
-
                     }
-
-                } 
+                }
             }
-
             return View();
-
         }
+
 
         [AllowAnonymous]
         public ActionResult LogOff()
@@ -75,4 +73,6 @@ namespace Conference.Controllers
         }
 
     }
+    
+
 }

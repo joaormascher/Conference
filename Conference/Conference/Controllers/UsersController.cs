@@ -11,11 +11,11 @@ using System.Web.Security;
 
 namespace Conference.Controllers
 {
-   [Authorize]  
+    [Authorize]
     public class UsersController : Controller
     {
         private ConferenceContext db = new ConferenceContext();
-       
+
         // GET: Users   
         public ActionResult Index(string Username, string Email, int? kind, string atual)
         {
