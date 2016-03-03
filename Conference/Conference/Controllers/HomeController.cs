@@ -37,6 +37,7 @@ namespace Conference.Controllers
                     if(v != null)
                     {
                         Session["user"] = v;
+                        CreateAuthorizeTicket(v.Username, "Admin");
                         return RedirectToAction("Index");
                     }
                 }
