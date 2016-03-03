@@ -38,6 +38,10 @@ namespace Conference.Controllers {
         // GET: Presenters/Create
         public ActionResult Create()
         {
+            ViewBag.UsersCollection = db.Users.Select(p => new SelectListItem() {
+                Text = p.Username,
+                Value = p.Username.ToString()
+            }).ToList();
             return View();
         }
 

@@ -9,12 +9,14 @@
 <p>
     @Html.ActionLink("Criar nova", "Create")
 </p>
+<br />
+@Html.Label("Busca :")
 @using (Html.BeginForm())
 {
      @Html.TextBox("par")
      <input type="submit" style="display:none" />
 }
-
+<br />
 
 <table class="table">
     <tr>

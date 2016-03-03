@@ -11,13 +11,14 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 
-<p>
+<br />
+@Html.Label("Busca :")
     @using (Html.BeginForm())
     {
         @Html.TextBox("word")
-        <input type="submit" value="search" />
+        <input type="submit" style="display:none" />
     }
-</p>
+<br />
 <table class="table">
     <tr>
         <th>

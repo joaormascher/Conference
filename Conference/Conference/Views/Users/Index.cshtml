@@ -18,18 +18,14 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+<br />
+@Html.Label("Busca :")
     @using (Html.BeginForm())
-    {
-      
+    {    
         @Html.TextBox("atual");
-        @Html.Label("Username :");
-        <br />
         @Html.TextBox("Username");
-        <br /><br />
-        @Html.Label("E-mail :");
+        @Html.Label("E-mail :");    @Html.TextBox("Email");
         <br />
-        @Html.TextBox("Email");
-        <br /><br />
         @Html.Label("Tipo :");
           
         <table id="radio" style="border:none">

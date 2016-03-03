@@ -33,7 +33,7 @@ namespace Conference.Controllers
            
             return View(model);
         }
-        
+
 
         // GET: Presentations/Details/5
         public ActionResult Details(int? id)
