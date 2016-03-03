@@ -43,18 +43,19 @@
                 @* ^linhas usadas para entrada em caixa de texto *@
 
 
-                @Html.DropDownList("Presenter", (ViewBag.PresenterCollection as List<SelectListItem>
+                @Html.DropDownListFor(model => model.PresenterId, (ViewBag.PresenterCollection as List<Conference.Models.Presenter>
                ).Select(item => new SelectListItem
                            {
-                               Value = item.Value,
-                               Text = item.Text,
-                               Selected = "select" == item.Value ? true : false
+                               Value = item.Id.ToString(),
+                               Text = item.Name
                            })
+
 
                )
 
                 <span id="lPresenter"></span>
                 @Html.ValidationMessageFor(model => model.PresenterId, "", new { @class = "text-danger" })
+
 
 </div>
         </div>

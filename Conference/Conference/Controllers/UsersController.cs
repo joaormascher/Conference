@@ -10,6 +10,7 @@ using Conference.Models;
 
 namespace Conference.Controllers
 {
+       
     public class UsersController : Controller
     {
         private ConferenceContext db = new ConferenceContext();
@@ -53,6 +54,10 @@ namespace Conference.Controllers
         // GET: Users/Create
         public ActionResult Create()
         {
+            ViewBag.opcoes = new List<SelectListItem>() { new SelectListItem { Text = "Admin", Value = "0" },
+                                                          new SelectListItem { Text = "Palestrante", Value = "1" },
+                                                          new SelectListItem { Text = "Usuário", Value = "2" }};
+
             return View();
         }
 

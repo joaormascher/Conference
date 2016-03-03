@@ -129,7 +129,7 @@ namespace Conference.Controllers {
         }
 
         // [HttpPost]
-        public ActionResult LoadPresenters(int id)
+        public ActionResult LoadPresenters(int? id)
         {
             var presenter = db.Presenters.Where(p => p.Id == id).ToList();
             return Json(presenter, JsonRequestBehavior.AllowGet);
