@@ -10,8 +10,11 @@ namespace Conference.Models
     {
         [Key]
         public int IdSchedule { get; set; }
+        [Display(Name = "Data e Hora")]
         public DateTime DateHour { get; set; }
+        [Display(Name = "Local da Palestra")]
         public string Host { get; set; }
+        [Display(Name = "Título da Palestra")]
         public string TitlePresentation { get; set; }
     }
 }

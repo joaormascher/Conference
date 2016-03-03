@@ -53,7 +53,7 @@ namespace Conference.Controllers
         public ActionResult LogOff()
         {
             FormsAuthentication.SignOut();
-            return View("Index");
+            return RedirectToAction("Index");
         }
         public void CreateAuthorizeTicket(string userId, string roles)
         {
