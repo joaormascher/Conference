@@ -11,10 +11,14 @@ namespace Conference.Controllers
     [Authorize]
     public class HomeController : Controller
     {
+        private ConferenceContext db = new ConferenceContext();
+
         // GET: Home
+        [AllowAnonymous]
         public ActionResult Index()
         {
-
+            ViewBag.ScheduleCollection = (from p in db.Schedules
+                                           select p).ToList();
             return View();
         }
         [AllowAnonymous]
@@ -53,6 +57,7 @@ namespace Conference.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction("Index");
         }
+
         public void CreateAuthorizeTicket(string userId, string roles)
         {
 

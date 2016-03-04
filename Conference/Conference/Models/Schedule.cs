@@ -15,6 +15,6 @@ namespace Conference.Models
         [Display(Name = "Local da Palestra")]
         public string Host { get; set; }
         [Display(Name = "Título da Palestra")]
-        public string TitlePresentation { get; set; }
+        public int Pid { get; set; }
     }
 }

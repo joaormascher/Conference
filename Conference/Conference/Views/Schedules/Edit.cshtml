@@ -34,13 +34,18 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.TitlePresentation, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Pid, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @*@Html.EditorFor(model => model.TitlePresentation, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TitlePresentation, "", new { @class = "text-danger" })*@
-
-                @Html.DropDownList("TitlePresentation", new SelectList(ViewBag.PresentationCollection))
-            </div>
+                
+                @Html.DropDownListFor(model => model.Pid, (ViewBag.Presentation as List<Conference.Models.Presentation>
+                    ).Select(item => new SelectListItem
+                    {
+                    Value = item.Pid.ToString(),
+                    Text = item.Title
+                    })
+                    , htmlAttributes: new { @class = "btn form-control dropdown-toggle", @style= "border-color:#C0C0C0" }
+                    )
+</div>
         </div>
 
         <div class="form-group">

@@ -13,7 +13,6 @@ namespace Conference.Controllers
     [Authorize]
     public class PresentationsController : Controller
     {
-
         private ConferenceContext db = new ConferenceContext();
 
         // GET: Presentations
@@ -82,6 +81,8 @@ namespace Conference.Controllers
         // GET: Presentations/Edit/5
         public ActionResult Edit(int? id)
         {
+            ViewBag.PresenterCollection = (from p in db.Presenters
+                                           select p).ToList();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

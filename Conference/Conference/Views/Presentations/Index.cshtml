@@ -53,7 +53,8 @@
         </td>
         <td>
            @Html.TextBoxFor(modelItem => item.PresenterId,
-              (ViewBag.PresenterCollection as List<Conference.Models.Presenter>).Where(p => p.Id == item.PresenterId).FirstOrDefault().Name,
+              (ViewBag.PresenterCollection as List<Conference.Models.Presenter>)
+                .Where(p => p.Id == item.PresenterId).FirstOrDefault().Name,
                htmlAttributes: new { @readonly = true, @style = "border:none;out-line:none;" }
            )
 
