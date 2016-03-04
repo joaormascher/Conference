@@ -17,18 +17,25 @@ namespace Conference.Controllers
 
         // GET: Schedules
         public ActionResult Index(string word)
-        {
-            //Schedule schedule = new Schedule();
-            //var Presen = db.Presentations.Where(p => p.Pid == schedule.);
+        { ViewBag.Presentation = (from p in db.Presentations
+                                               select p).ToList();
+                var ids = (from p in db.Presentations
+                           where p.Title.Contains(word)
+                           select p.Pid).ToList();
 
-            var model = from c in db.Schedules
-                        orderby c.DateHour
-                        where c.Host.Contains(word)
-                        || c.DateHour.ToString().Contains(word)
-                        || c.TitlePresentation.Contains(word)
-                        || word.Equals(null) || word.Equals("")
+                var model = from c in db.Schedules
+                            orderby c.IdSchedule
+                            where ids.Contains(c.Pid) || c.DateHour.ToString().Contains(word)
+                            || word.Equals(null) || word.Equals("")
+                            select c;
+
+                //var model = from c in db.Schedules
+                //        orderby c.DateHour
+                //        where c.Host.Contains(word)
+                //        || c.DateHour.ToString().Contains(word)               
+                //        || word.Equals(null) || word.Equals("")
                         
-                        select c;
+                //        select c;
             
 
             return View(model);
@@ -37,6 +44,7 @@ namespace Conference.Controllers
         // GET: Schedules/Details/5
         public ActionResult Details(int? id)
         {
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -53,6 +61,7 @@ namespace Conference.Controllers
         public ActionResult Create()
         {
             ViewBag.PresenterCollection = (from c in db.Presentations select c.Title).Distinct();
+            ViewBag.Presentation = db.Presentations.ToList();
             return View();
         }
 
@@ -62,7 +71,7 @@ namespace Conference.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AllowAnonymous]
-        public ActionResult Create([Bind(Include = "IdSchedule,DateHour,Host,TitlePresentation")] Schedule schedule)
+        public ActionResult Create([Bind(Include = "IdSchedule,DateHour,Host,Pid")] Schedule schedule)
         {
             if (ModelState.IsValid)
             {
@@ -77,6 +86,8 @@ namespace Conference.Controllers
         // GET: Schedules/Edit/5
         public ActionResult Edit(int? id)
         {
+            ViewBag.Presentation = (from p in db.Presentations
+                                    select p).ToList();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -86,7 +97,7 @@ namespace Conference.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.PresentationCollection = (from c in db.Presentations select c.Title).Distinct();
+            
             return View(schedule);
         }
 
@@ -95,7 +106,7 @@ namespace Conference.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdSchedule,DateHour,Host,TitlePresentation")] Schedule schedule)
+        public ActionResult Edit([Bind(Include = "IdSchedule,DateHour,Host,Pid")] Schedule schedule)
         {
             if (ModelState.IsValid)
             {

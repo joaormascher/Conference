@@ -3,43 +3,106 @@
 @{
     ViewBag.Title = "Login";
 }
+<link rel="stylesheet" href="https://almsaeedstudio.com/themes/AdminLTE/dist/css/AdminLTE.min.css">
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="box" style="margin:20px 0 20px 0">
+            <h2 style="text-align:center;font-family:Arial;">Login</h2>
+
+            @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+            {
+                //cria a tag do formulário
+                @Html.AntiForgeryToken()
+                // previne o ataque CSRF
+                @Html.ValidationSummary(true)
+                if (@ViewBag.Message != null)
+                {
+                    <div style="border:1px solid red">
+                        @ViewBag.Message
+                    </div>
+                }
+
+                <div class="form-group has-feedback" style="width:100%">
+                    @Html.TextBoxFor(a => a.Username, new { @class = "form-control", placeholder = "Usuário" })
+                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                    @Html.ValidationMessageFor(a => a.Username)
+                </div>
 
 
-<h2> Login </h2> 
+                <div class="form-group has-feedback">
+                    @Html.PasswordFor(a => a.Password, new { @class = "form-control", placeholder = "Senha" })
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
 
-@using(Html.BeginForm("Login", "Home", FormMethod.Post)) {
-    //cria a tag do formulário 
-    @Html.AntiForgeryToken()
-    // previne o ataque CSRF
-    @Html.ValidationSummary(true)
-    if (@ViewBag.Message != null) { 
-        <div style="border:1px solid red"> 
-    @ViewBag.Message 
-    </div> 
-    } 
-    <table> 
-    <tr> 
-        <td>@Html.LabelFor(a => a.Username)</td> 
-   
-        <td>@Html.TextBoxFor(a => a.Username)</td> 
-        <td>@Html.ValidationMessageFor(a => a.Username)</td> 
-   </tr> 
-    <tr> 
-        <td> @Html.LabelFor(a => a.Password)</td>
-   
-         <td> @Html.PasswordFor(a => a.Password) </td> 
-        <td> @Html.ValidationMessageFor(a => a.Password)</td> 
-   </tr> 
+                    @Html.ValidationMessageFor(a => a.Password)
+                </div>
 
-    <tr> 
-        <td>
-        </td> 
-       <tr></tr> <td> <input type="submit" value="Login" /> </td>
-        <td>
-        </td> 
-    </tr> 
-    </table> 
-} 
-@section Scripts{
-     @Scripts.Render("~/bundles/jqueryval") 
-    }
+                        <input type="submit" value="Login" class="btn btn-primary btn-block btn-flat" />
+
+            }
+            @section Scripts{
+                @Scripts.Render("~/bundles/jqueryval")
+            }
+        </div>
+    </div>
+    <div class="col-md-9">
+
+        <div class="box" style="margin:20px 0 20px 0">
+            <div class="box-header " >
+
+                <h3 class="box-title">
+                    <span class="glyphicon glyphicon-calendar "></span>
+                    Palestras
+                </h3>
+                   
+            </div>
+            <div class="box-body">
+
+                <div id="timeline">
+                    <!-- The timeline -->
+                    <ul class="timeline timeline-inverse">
+                        <!-- timeline time label -->
+                        <li class="time-label">
+                            <span class="bg-gray">
+                                10 Feb. 2014
+                            </span>
+                        </li>
+                        <!-- /.timeline-label -->
+                        <!-- timeline item -->
+                        <li>
+                            <i class="glyphicon glyphicon-user"></i>
+
+                            <div class="timeline-item">
+                                <span class="time"><i class="glyphicon glyphicon-time"></i> 13/04/2016</span>
+
+                                <h3 class="timeline-header"><a href="#">Como ser O CARA</a> com Pedro Ferreira</h3>
+
+                                <div class="timeline-body">
+                                    Como ser O CARA! Essa palestra te mudará para sempre! Isso é incrível! Veja como é possível se tornar o cara e faça sua vida melhor!
+                                </div>
+                                <div class="timeline-footer">
+                                    <span class="glyphicon glyphicon-tags btn"></span>
+                                    <span class="btn btn-primary btn-xs">Superção</span>
+                                    <span class="btn btn-primary btn-xs">Motivação</span>
+                                    <span class="btn btn-primary btn-xs">Vitória</span>
+
+                                </div>
+                            </div>
+                        </li>
+                        <!-- END timeline item -->
+                        <!-- timeline item -->
+                       
+                        <!-- END timeline item -->
+                        <li>
+                            <i class="fa fa-clock-o bg-gray"></i>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.tab-pane -->
+
+
+            </div>
+            <!-- /.tab-content -->
+        </div>
+    </div>
+</div>

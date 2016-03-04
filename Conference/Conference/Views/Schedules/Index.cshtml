@@ -29,8 +29,9 @@
             @Html.DisplayNameFor(model => model.Host)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TitlePresentation)
-        </th>
+            @Html.DisplayName("Titulo da Palestra")
+                
+</th>
         <th></th>
     </tr>
     </thead>
@@ -44,8 +45,12 @@
             @Html.DisplayFor(modelItem => item.Host)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.TitlePresentation)
-        </td>
+            @Html.TextBoxFor(modelItem => item.Pid,
+            (ViewBag.Presentation as List<Conference.Models.Presentation>
+                ).Where(p => p.Pid == item.Pid).FirstOrDefault().Title,
+                htmlAttributes: new { @readonly = true, @style = "border:none;out-line:none;" }
+                )
+</td>
         <td>
             @Html.ActionLink("Editar", "Edit", new { id=item.IdSchedule }) |
             @Html.ActionLink("Detalhes", "Details", new { id=item.IdSchedule }) |

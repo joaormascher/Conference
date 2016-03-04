@@ -39,7 +39,7 @@
                @* @Html.EditorFor(model => model.Presenter, new { htmlAttributes = new { @class = "form-control" } })
                @Html.ValidationMessageFor(model => model.Presenter, "", new { @class = "text-danger" })*@
 
-                @Html.DropDownListFor(model => model.PresenterId, (ViewBag.PresenterCollection as List<Conference.Models.Presenter>
+               @Html.DropDownListFor(model => model.PresenterId, (ViewBag.PresenterCollection as List<Conference.Models.Presenter>
                ).Select(item => new SelectListItem
                {
                    Value = item.Id.ToString(),
