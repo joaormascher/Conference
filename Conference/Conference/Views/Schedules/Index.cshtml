@@ -8,7 +8,7 @@
 <h2>Programação</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Adicionar palestra à programação", "Create")
 </p>
 
 <br />
@@ -19,7 +19,8 @@
         <input type="submit" style="display:none" />
     }
 <br />
-<table class="table">
+<table class="table table-hover">
+    <thead>
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.DateHour)
@@ -32,6 +33,7 @@
         </th>
         <th></th>
     </tr>
+    </thead>
 
 @foreach (var item in Model) {
     <tr>
@@ -45,9 +47,9 @@
             @Html.DisplayFor(modelItem => item.TitlePresentation)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdSchedule }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IdSchedule }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdSchedule })
+            @Html.ActionLink("Editar", "Edit", new { id=item.IdSchedule }) |
+            @Html.ActionLink("Detalhes", "Details", new { id=item.IdSchedule }) |
+            @Html.ActionLink("Deletar", "Delete", new { id=item.IdSchedule })
         </td>
     </tr>
 }
