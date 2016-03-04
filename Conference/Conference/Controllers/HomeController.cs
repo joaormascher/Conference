@@ -11,23 +11,37 @@ namespace Conference.Controllers
     [Authorize]
     public class HomeController : Controller
     {
+        Repository _repository = new Repository();
         private ConferenceContext db = new ConferenceContext();
 
         // GET: Home
         [AllowAnonymous]
-        public ActionResult Index()
+        public ActionResult Index(string word)
         {
-            ViewBag.ScheduleCollection = (from p in db.Schedules
-                                           select p).ToList();
+           
             return View();
         }
         [AllowAnonymous]
-        public ActionResult Login(string returnUrl)
+        public ActionResult Login(string word)
         {
+            ViewBag.PresenterCollection = (from p in db.Presenters
+                                           select p).ToList();
 
+            ViewBag.Presentation = (from p in db.Presentations
+                                    select p).ToList();
+            var ids = (from p in db.Presentations
+                       where p.Title.Contains(word)
+                       select p.Pid).ToList();
+
+            ViewBag.Presenter = (db.Presenters.ToList());
+            ViewBag.ScheduleCollection = (from c in db.Schedules
+                                          orderby c.IdSchedule
+                                          where ids.Contains(c.Pid) || c.DateHour.ToString().Contains(word)
+                                          || word.Equals(null) || word.Equals("")
+                                          select c).ToList();
             return View();
         }
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AllowAnonymous]
