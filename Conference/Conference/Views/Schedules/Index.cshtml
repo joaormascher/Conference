@@ -48,7 +48,7 @@
             @Html.TextBoxFor(modelItem => item.Pid,
             (ViewBag.Presentation as List<Conference.Models.Presentation>
                 ).Where(p => p.Pid == item.Pid).FirstOrDefault().Title,
-                htmlAttributes: new { @readonly = true, @style = "border:none;out-line:none;" }
+                htmlAttributes: new { @readonly = true, @style = "border:none;out-line:none;background-color:transparent;color:#033649;" }
                 )
 </td>
         <td>

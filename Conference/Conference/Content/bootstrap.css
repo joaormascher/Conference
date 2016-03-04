@@ -60,7 +60,7 @@ h1 {
 }
 mark {
   background: #ff0;
-  color: #000;
+  color: #033649;
 }
 small {
   font-size: 80%;
@@ -252,10 +252,10 @@ th {
   }
   .btn > .caret,
   .dropup > .btn > .caret {
-    border-top-color: #000 !important;
+    border-top-color: #033649 !important;
   }
   .label {
-    border: 1px solid #000;
+    border: 1px solid #033649;
   }
   .table {
     border-collapse: collapse !important;
@@ -5250,14 +5250,14 @@ a.list-group-item-danger.active:focus {
   font-size: 21px;
   font-weight: bold;
   line-height: 1;
-  color: #000000;
+  color: #033649;
   text-shadow: 0 1px 0 #ffffff;
   opacity: 0.2;
   filter: alpha(opacity=20);
 }
 .close:hover,
 .close:focus {
-  color: #000000;
+  color: #033649;
   text-decoration: none;
   cursor: pointer;
   opacity: 0.5;
