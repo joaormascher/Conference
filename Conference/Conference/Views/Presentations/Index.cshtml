@@ -17,8 +17,8 @@
      <input type="submit" style="display:none" />
 }
 <br />
-
-<table class="table">
+<table class="table table-hover">
+    <thead>
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Title)
@@ -42,39 +42,40 @@
         </th>
         <th></th>
     </tr>
+    </thead>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Abstract)
-        </td>
-        <td>
-           @Html.TextBoxFor(modelItem => item.PresenterId,
-              (ViewBag.PresenterCollection as List<Conference.Models.Presenter>)
-                .Where(p => p.Id == item.PresenterId).FirstOrDefault().Name,
-               htmlAttributes: new { @readonly = true, @style = "border:none;out-line:none;" }
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Abstract)
+            </td>
+            <td>
+                @Html.TextBoxFor(modelItem => item.PresenterId,
+              (ViewBag.PresenterCollection as List<Conference.Models.Presenter>).Where(p => p.Id == item.PresenterId).FirstOrDefault().Name,
+               htmlAttributes: new { @readonly = true, @style = "border:none;out-line:none;background-color:transparent;color:#033649;" }
            )
 
-         </td>
-        <td>
-            @Html.TextBoxFor(modelItem => item.PresenterId,
+            </td>
+            <td>
+                @Html.TextBoxFor(modelItem => item.PresenterId,
               (ViewBag.PresenterCollection as List<Conference.Models.Presenter>).Where(p => p.Id == item.PresenterId).FirstOrDefault().Email,
-               htmlAttributes: new { @readonly = true, @style = "border:none;out-line:none;" }
+               htmlAttributes: new { @readonly = true, @style = "border:none;out-line:none;background-color:transparent;color:#033649;" }
            )
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Kind)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.Pid }) |
-            @Html.ActionLink("Detalhes", "Details", new { id=item.Pid }) |
-            @Html.ActionLink("Deletar", "Delete", new { id=item.Pid })
-        </td>
-    </tr>
-}
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kind)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.Pid }) |
+                @Html.ActionLink("Detalhes", "Details", new { id = item.Pid }) |
+                @Html.ActionLink("Deletar", "Delete", new { id = item.Pid })
+            </td>
+        </tr>
+    }
 
 </table>
 

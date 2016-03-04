@@ -72,19 +72,21 @@
             
             <input type="Submit" id="submit" value="Pesquisar" />
             }
-<table class="table">
-    <tr>
-        <th>
-                        @Html.DisplayNameFor(model => model.Username)
-        </th>
-        <th>
-                        @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Kind)
-        </th>
-        <th></th>
-    </tr>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Username)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Kind)
+            </th>
+            <th></th>
+        </tr>
+        </thead>
 
                 @foreach (var item in Model)
                 {
@@ -96,7 +98,7 @@
                             @Html.DisplayFor(modelItem => item.Email)
         </td>
         <td>
-                            @Html.TextBoxFor(modelItem => item.Kind, item.Kind == 0?"Admin": item.Kind == 1? "Palestrante" : "Usuário", htmlAttributes: new { @readonly=true,@style = "border:none;out-line:none;" })
+                            @Html.TextBoxFor(modelItem => item.Kind, item.Kind == 0?"Admin": item.Kind == 1? "Palestrante" : "Usuário", htmlAttributes: new { @readonly=true,@style = "border:none;out-line:none;background-color:transparent;color:#033649;" })
                        
         </td>
         <td>

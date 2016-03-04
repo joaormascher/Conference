@@ -5,6 +5,7 @@
 }
 <link rel="stylesheet" href="https://almsaeedstudio.com/themes/AdminLTE/dist/css/AdminLTE.min.css">
 
+
 <div class="row">
     <div class="col-md-3">
         <div class="box" style="margin:20px 0 20px 0">
@@ -37,7 +38,7 @@
                     @Html.ValidationMessageFor(a => a.Password)
                 </div>
 
-                        <input type="submit" value="Login" class="btn btn-primary btn-block btn-flat" />
+                        <input type="submit" value="Login" class="btn btn-default btn-block btn-flat" />
 
             }
             @section Scripts{
@@ -69,10 +70,10 @@
                         </li>
                         @foreach (var item in (ViewBag.ScheduleCollection as List<Conference.Models.Schedule>))
                         {
-                            <li>
-                                <i class="glyphicon glyphicon-user"></i>
+                        <li>
+                            <i class="glyphicon glyphicon-user"></i>
 
-                                <div class="timeline-item">
+                            <div class="timeline-item">
                                     <span class="time"><i class="glyphicon glyphicon-time"></i> @Html.DisplayFor(modelItem => item.DateHour)</span>
 
                                     <h3 class="timeline-header"><a href="#">
@@ -93,13 +94,13 @@ htmlAttributes: new { @readonly = true, @style = "border:none;out-line:none;" })
 
 </h3>
                                     <p class="timeline-body"><b>Localização : </b>@Html.DisplayFor(modelItem => item.Host)</p>
-                                    <div class="timeline-body">
+                                <div class="timeline-body">
                                        @Html.LabelFor(modelItem => item.Pid,
     (ViewBag.Presentation as List<Conference.Models.Presentation>
         ).Where(p => p.Pid == item.Pid).FirstOrDefault().Abstract,
         htmlAttributes: new { @readonly = true, @style = "border:none;out-line:none;" })
-                                    </div>
-                                    <div class="timeline-footer">
+                                </div>
+                                <div class="timeline-footer">
                                         <span class="btn btn-primary btn-xs">
                                         @{
                                             var tag = (ViewBag.Presentation as List<Conference.Models.Presentation>).Where(p => p.Pid == item.Pid).FirstOrDefault().Kind.Replace(" ", "</span> <span class='btn btn-primary btn-xs'>");
@@ -109,11 +110,11 @@ htmlAttributes: new { @readonly = true, @style = "border:none;out-line:none;" })
 
 
 
-</div>
                                 </div>
-                            </li>
+                            </div>
+                        </li>
                         }
-
+                       
                         <li>
                             <i class="fa fa-clock-o bg-gray"></i>
                         </li>
@@ -126,4 +127,4 @@ htmlAttributes: new { @readonly = true, @style = "border:none;out-line:none;" })
             <!-- /.tab-content -->
         </div>
     </div>
-</div> 
+</div>
