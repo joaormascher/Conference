@@ -52,7 +52,7 @@
 
                 <h3 class="box-title">
                     <span class="glyphicon glyphicon-calendar "></span>
-                    Palestras
+                    Programação
                 </h3>
                    
             </div>
@@ -64,35 +64,56 @@
                         <!-- timeline time label -->
                         <li class="time-label">
                             <span class="bg-gray">
-                                10 Feb. 2014
+                                Palestras
                             </span>
                         </li>
-                        <!-- /.timeline-label -->
-                        <!-- timeline item -->
-                        <li>
-                            <i class="glyphicon glyphicon-user"></i>
+                        @foreach (var item in (ViewBag.ScheduleCollection as List<Conference.Models.Schedule>))
+                        {
+                            <li>
+                                <i class="glyphicon glyphicon-user"></i>
 
-                            <div class="timeline-item">
-                                <span class="time"><i class="glyphicon glyphicon-time"></i> 13/04/2016</span>
+                                <div class="timeline-item">
+                                    <span class="time"><i class="glyphicon glyphicon-time"></i> @Html.DisplayFor(modelItem => item.DateHour)</span>
 
-                                <h3 class="timeline-header"><a href="#">Como ser O CARA</a> com Pedro Ferreira</h3>
+                                    <h3 class="timeline-header"><a href="#">
+                                        @Html.LabelFor(modelItem => item.Pid,
+(ViewBag.Presentation as List<Conference.Models.Presentation>
+).Where(p => p.Pid == item.Pid).FirstOrDefault().Title,
+htmlAttributes: new { @readonly = true, @style = "border:none;out-line:none;" })
 
-                                <div class="timeline-body">
-                                    Como ser O CARA! Essa palestra te mudará para sempre! Isso é incrível! Veja como é possível se tornar o cara e faça sua vida melhor!
+                                        </a> com @Html.LabelFor(modelItem => item.Pid,
+(ViewBag.Presenter as List<Conference.Models.Presenter>).Where(pr => pr.Id ==
+(ViewBag.Presentation as List<Conference.Models.Presentation>
+).Where(p => p.Pid == item.Pid).FirstOrDefault().PresenterId).FirstOrDefault().Name
+
+
+    ,
+    htmlAttributes: new { @readonly = true, @style = "border:none;out-line:none;" })
+
+
+</h3>
+                                    <p class="timeline-body"><b>Localização : </b>@Html.DisplayFor(modelItem => item.Host)</p>
+                                    <div class="timeline-body">
+                                       @Html.LabelFor(modelItem => item.Pid,
+    (ViewBag.Presentation as List<Conference.Models.Presentation>
+        ).Where(p => p.Pid == item.Pid).FirstOrDefault().Abstract,
+        htmlAttributes: new { @readonly = true, @style = "border:none;out-line:none;" })
+                                    </div>
+                                    <div class="timeline-footer">
+                                        <span class="btn btn-primary btn-xs">
+                                        @{
+                                            var tag = (ViewBag.Presentation as List<Conference.Models.Presentation>).Where(p => p.Pid == item.Pid).FirstOrDefault().Kind.Replace(" ", "</span> <span class='btn btn-primary btn-xs'>");
+                                            WriteLiteral(tag);
+                                        }
+                                    </span>
+
+
+
+</div>
                                 </div>
-                                <div class="timeline-footer">
-                                    <span class="glyphicon glyphicon-tags btn"></span>
-                                    <span class="btn btn-primary btn-xs">Superção</span>
-                                    <span class="btn btn-primary btn-xs">Motivação</span>
-                                    <span class="btn btn-primary btn-xs">Vitória</span>
+                            </li>
+                        }
 
-                                </div>
-                            </div>
-                        </li>
-                        <!-- END timeline item -->
-                        <!-- timeline item -->
-                       
-                        <!-- END timeline item -->
                         <li>
                             <i class="fa fa-clock-o bg-gray"></i>
                         </li>
@@ -105,4 +126,4 @@
             <!-- /.tab-content -->
         </div>
     </div>
-</div>
+</div> 

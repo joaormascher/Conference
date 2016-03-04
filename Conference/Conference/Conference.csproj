@@ -232,8 +232,10 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PresentationsController.cs" />
     <Compile Include="Controllers\PresentersController.cs" />
+    <Compile Include="Controllers\Repository.cs" />
     <Compile Include="Controllers\SchedulesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="db\Presentations.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
