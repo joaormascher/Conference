@@ -11,7 +11,7 @@ using System.Web.Security;
 
 namespace Conference.Controllers
 {
-    [Authorize]
+    [Authorize(Roles="Admin")]
     public class UsersController : Controller
     {
         private ConferenceContext db = new ConferenceContext();
