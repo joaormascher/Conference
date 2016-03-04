@@ -55,7 +55,7 @@ namespace Conference.Controllers
         public ActionResult LogOff()
         {
             FormsAuthentication.SignOut();
-            return RedirectToAction("Index");
+            return RedirectToAction("Login");
         }
 
         public void CreateAuthorizeTicket(string userId, string roles)
