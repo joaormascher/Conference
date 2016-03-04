@@ -1,9 +1,7 @@
 ﻿@model Conference.Models.User
 
-@{
-    ViewBag.Title = "Login";
-}
-<link rel="stylesheet" href="https://almsaeedstudio.com/themes/AdminLTE/dist/css/AdminLTE.min.css">
+
+<link rel="stylesheet" href="~/Content/AdminLTE.min.css">
 
 
 
@@ -40,7 +38,7 @@
 
                     @Html.ValidationMessageFor(a => a.Password)
                 </div>
-
+                        <br />
                         <input type="submit" value="Login" class="btn btn-default btn-block btn-flat" />
 
             }
@@ -104,7 +102,7 @@ htmlAttributes: new { @readonly = true, @style = "border:none;out-line:none;" })
         htmlAttributes: new { @readonly = true, @style = "border:none;out-line:none;" })
                                 </div>
                                 <div class="timeline-footer">
-                                        <span class="btn btn-primary btn-xs">
+                                        <span class="btn btn-default btn-xs">
                                         @{
                                             var tag = (ViewBag.Presentation as List<Conference.Models.Presentation>).Where(p => p.Pid == item.Pid).FirstOrDefault().Kind.Replace(" ", "</span> <span class='btn btn-primary btn-xs'>");
                                             WriteLiteral(tag);

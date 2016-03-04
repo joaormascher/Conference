@@ -10,12 +10,13 @@ using Conference.Models;
 
 namespace Conference.Controllers
 {
-    [Authorize]
+    [CustomAuthorize(Roles.Admin, Roles.Palestrante, Roles.Usuario)]
     public class SchedulesController : Controller
     {
         private ConferenceContext db = new ConferenceContext();
 
         // GET: Schedules
+        [CustomAuthorize(Roles.Admin, Roles.Palestrante, Roles.Usuario)]
         public ActionResult Index(string word)
         { ViewBag.Presentation = (from p in db.Presentations
                                                select p).ToList();
@@ -42,6 +43,7 @@ namespace Conference.Controllers
         }
 
         // GET: Schedules/Details/5
+        [CustomAuthorize(Roles.Admin, Roles.Palestrante, Roles.Usuario)]
         public ActionResult Details(int? id)
         {
 
@@ -58,6 +60,7 @@ namespace Conference.Controllers
         }
 
         // GET: Schedules/Create
+        [CustomAuthorize(Roles.Admin, Roles.Palestrante)]
         public ActionResult Create()
         {
             ViewBag.PresenterCollection = (from c in db.Presentations select c.Title).Distinct();
@@ -70,7 +73,7 @@ namespace Conference.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [AllowAnonymous]
+        [CustomAuthorize(Roles.Admin, Roles.Palestrante)]
         public ActionResult Create([Bind(Include = "IdSchedule,DateHour,Host,Pid")] Schedule schedule)
         {
             if (ModelState.IsValid)
@@ -84,6 +87,7 @@ namespace Conference.Controllers
         }
 
         // GET: Schedules/Edit/5
+        [CustomAuthorize(Roles.Admin, Roles.Palestrante, Roles.Usuario)]
         public ActionResult Edit(int? id)
         {
             ViewBag.Presentation = (from p in db.Presentations
@@ -106,6 +110,7 @@ namespace Conference.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [CustomAuthorize(Roles.Admin, Roles.Palestrante)]
         public ActionResult Edit([Bind(Include = "IdSchedule,DateHour,Host,Pid")] Schedule schedule)
         {
             if (ModelState.IsValid)
@@ -118,6 +123,7 @@ namespace Conference.Controllers
         }
 
         // GET: Schedules/Delete/5
+        [CustomAuthorize(Roles.Admin, Roles.Palestrante)]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -135,6 +141,7 @@ namespace Conference.Controllers
         // POST: Schedules/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [CustomAuthorize(Roles.Admin, Roles.Palestrante)]
         public ActionResult DeleteConfirmed(int id)
         {
             Schedule schedule = db.Schedules.Find(id);

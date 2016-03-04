@@ -5,12 +5,14 @@ using System.Web.Mvc;
 using Conference.Models;
 
 namespace Conference.Controllers {
-    [Authorize]
+
+    [CustomAuthorize(Roles.Admin, Roles.Palestrante, Roles.Usuario)]
     public class PresentersController : Controller
     {
         private ConferenceContext db = new ConferenceContext();
-      
+
         // GET: Presenters
+        [CustomAuthorize(Roles.Admin, Roles.Palestrante, Roles.Usuario)]
         public ActionResult Index(string find)
         {
             var model = from c in db.Presenters
@@ -22,6 +24,7 @@ namespace Conference.Controllers {
 
 
         // GET: Presenters/Details/5
+        [CustomAuthorize(Roles.Admin, Roles.Palestrante, Roles.Usuario)]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,6 +40,7 @@ namespace Conference.Controllers {
         }
 
         // GET: Presenters/Create
+        [CustomAuthorize(Roles.Admin, Roles.Palestrante)]
         public ActionResult Create()
         {
             ViewBag.UsersCollection = db.Users.Select(p => new SelectListItem() {
@@ -51,6 +55,7 @@ namespace Conference.Controllers {
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [CustomAuthorize(Roles.Admin, Roles.Palestrante)]
         public ActionResult Create([Bind(Include = "Id,Name,Email,Title,Biography,UserOwner")] Presenter presenter)
         {
             if (ModelState.IsValid)
@@ -64,6 +69,7 @@ namespace Conference.Controllers {
         }
 
         // GET: Presenters/Edit/5
+        [CustomAuthorize(Roles.Admin, Roles.Palestrante)]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -83,6 +89,7 @@ namespace Conference.Controllers {
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [CustomAuthorize(Roles.Admin, Roles.Palestrante)]
         public ActionResult Edit([Bind(Include = "Id,Name,Email,Title,Biography,UserOwner")] Presenter presenter)
         {
             if (ModelState.IsValid)
@@ -95,6 +102,7 @@ namespace Conference.Controllers {
         }
 
         // GET: Presenters/Delete/5
+        [CustomAuthorize(Roles.Admin, Roles.Palestrante)]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -110,6 +118,7 @@ namespace Conference.Controllers {
         }
 
         // POST: Presenters/Delete/5
+        [CustomAuthorize(Roles.Admin, Roles.Palestrante)]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

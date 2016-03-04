@@ -2,6 +2,93 @@
 @{
     ViewBag.Title = "Index";
 }
-
+<link rel="stylesheet" href="~/Content/AdminLTE.min.css">
 <h2>Home</h2>
+
+<div class="col-md-9">
+
+    <div class="box" style="margin:20px 0 20px 0">
+        <div class="box-header ">
+
+            <h3 class="box-title">
+                <span class="glyphicon glyphicon-calendar "></span>
+                Programação
+            </h3>
+
+        </div>
+        <div class="box-body">
+
+            <div id="timeline">
+                <!-- The timeline -->
+                <ul class="timeline timeline-inverse">
+                    <!-- timeline time label -->
+                    <li class="time-label">
+                        <span class="bg-gray">
+                            Palestras
+                        </span>
+                    </li>
+                    @foreach (var item in (ViewBag.ScheduleCollection as List
+                    <Conference.Models.Schedule>
+                        ))
+                        {
+                        <li>
+                            <i class="glyphicon glyphicon-user"></i>
+
+                            <div class="timeline-item">
+                                <span class="time"><i class="glyphicon glyphicon-time"></i> @Html.DisplayFor(modelItem => item.DateHour)</span>
+
+                                <h3 class="timeline-header">
+                                    <a href="#">
+                                        @Html.LabelFor(modelItem => item.Pid,
+                                        (ViewBag.Presentation as List<Conference.Models.Presentation>
+                                            ).Where(p => p.Pid == item.Pid).FirstOrDefault().Title,
+                                            htmlAttributes: new { @readonly = true, @style = "border:none;out-line:none;" })
+
+                                    </a> com @Html.LabelFor(modelItem => item.Pid,
+                                    (ViewBag.Presenter as List<Conference.Models.Presenter>
+                                        ).Where(pr => pr.Id ==
+                                        (ViewBag.Presentation as List<Conference.Models.Presentation>
+                                            ).Where(p => p.Pid == item.Pid).FirstOrDefault().PresenterId).FirstOrDefault().Name
+
+
+                                            ,
+                                            htmlAttributes: new { @readonly = true, @style = "border:none;out-line:none;" })
+
+
+                                </h3>
+                                <p class="timeline-body"><b>Localização : </b>@Html.DisplayFor(modelItem => item.Host)</p>
+                                <div class="timeline-body">
+                                    @Html.LabelFor(modelItem => item.Pid,
+                                    (ViewBag.Presentation as List<Conference.Models.Presentation>
+                                        ).Where(p => p.Pid == item.Pid).FirstOrDefault().Abstract,
+                                        htmlAttributes: new { @readonly = true, @style = "border:none;out-line:none;" })
+                                </div>
+                                <div class="timeline-footer">
+                                    <span class="btn btn-default btn-xs">
+                                        @{
+                                        var tag = (ViewBag.Presentation as List<Conference.Models.Presentation>).Where(p => p.Pid == item.Pid).FirstOrDefault().Kind.Replace(" ", "</span> <span class='btn btn-primary btn-xs'>");
+                                        WriteLiteral(tag);
+                                        }
+                                    </span>
+
+
+
+                                </div>
+                            </div>
+                        </li>
+                        }
+
+                        <li>
+                            <i class="fa fa-clock-o bg-gray"></i>
+                        </li>
+                </ul>
+            </div>
+            <!-- /.tab-pane -->
+
+
+        </div>
+        <!-- /.tab-content -->
+    </div>
+</div>
+<div style="clear:both"></div>
 

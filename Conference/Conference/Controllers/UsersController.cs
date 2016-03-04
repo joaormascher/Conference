@@ -11,7 +11,7 @@ using System.Web.Security;
 
 namespace Conference.Controllers
 {
-    [Authorize]
+    [CustomAuthorize(Roles.Admin)]
     public class UsersController : Controller
     {
         private ConferenceContext db = new ConferenceContext();
@@ -38,6 +38,7 @@ namespace Conference.Controllers
         }
 
         // GET: Users/Details/5
+        [CustomAuthorize(Roles.Admin, Roles.Palestrante)]
         public ActionResult Details(string id)
         {
             if (id == null)
@@ -53,6 +54,7 @@ namespace Conference.Controllers
         }
 
         // GET: Users/Create
+        [CustomAuthorize(Roles.Admin, Roles.Palestrante)]
         public ActionResult Create()
         {
             ViewBag.opcoes = new List<SelectListItem>() { new SelectListItem { Text = "Admin", Value = "0" },
@@ -67,6 +69,7 @@ namespace Conference.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [CustomAuthorize(Roles.Admin, Roles.Palestrante)]
         public ActionResult Create([Bind(Include = "Username,Email,Password,Kind")] User user)
         {
             if (ModelState.IsValid)
@@ -80,6 +83,7 @@ namespace Conference.Controllers
         }
 
         // GET: Users/Edit/5
+        [CustomAuthorize(Roles.Admin)]
         public ActionResult Edit(string id)
         {
             if (id == null)
@@ -99,6 +103,7 @@ namespace Conference.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [CustomAuthorize(Roles.Admin)]
         public ActionResult Edit([Bind(Include = "Username,Email,Password,Kind")] User user)
         {
             if (ModelState.IsValid)
@@ -111,6 +116,7 @@ namespace Conference.Controllers
         }
 
         // GET: Users/Delete/5
+        [CustomAuthorize(Roles.Admin)]
         public ActionResult Delete(string id)
         {
             if (id == null)
@@ -126,8 +132,10 @@ namespace Conference.Controllers
         }
 
         // POST: Users/Delete/5
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [CustomAuthorize(Roles.Admin)]
         public ActionResult DeleteConfirmed(string id)
         {
             User user = db.Users.Find(id);

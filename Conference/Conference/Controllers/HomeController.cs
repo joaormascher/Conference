@@ -18,12 +18,32 @@ namespace Conference.Controllers
         [AllowAnonymous]
         public ActionResult Index(string word)
         {
-           
+            ViewBag.PresenterCollection = (from p in db.Presenters
+                                           select p).ToList();
+
+            ViewBag.Presentation = (from p in db.Presentations
+                                    select p).ToList();
+            var ids = (from p in db.Presentations
+                       where p.Title.Contains(word)
+                       select p.Pid).ToList();
+
+            ViewBag.Presenter = (db.Presenters.ToList());
+            ViewBag.ScheduleCollection = (from c in db.Schedules
+                                          orderby c.IdSchedule
+                                          where ids.Contains(c.Pid) || c.DateHour.ToString().Contains(word)
+                                          || word.Equals(null) || word.Equals("")
+                                          select c).ToList();
             return View();
         }
         [AllowAnonymous]
-        public ActionResult Login(string word)
+        public ActionResult Login(string word, int? id)
         {
+
+            ViewBag.Title = "Login";
+            if(id == 401) {
+                ViewBag.Message = "Autorização Necessária!!";
+            }
+
             ViewBag.PresenterCollection = (from p in db.Presenters
                                            select p).ToList();
 
