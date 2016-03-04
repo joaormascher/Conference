@@ -27,7 +27,6 @@ section,
 summary {
   display: block;
 }
-
 audio,
 canvas,
 progress,
@@ -252,7 +251,6 @@ th {
   .table {
     border-collapse: collapse !important;
   }
-
   .table td,
   .table th {
     background-color: #fff !important;
