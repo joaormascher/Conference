@@ -41,7 +41,7 @@ namespace Conference.Controllers
                                           select c).ToList();
             return View();
         }
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AllowAnonymous]
